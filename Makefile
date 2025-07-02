@@ -1,4 +1,4 @@
-CFLAGS += -Wall
+CFLAGS += -Wall -O2 -g
 LDFLAGS +=
 SOURCES = debparse.c
 OBJECTS = $(SOURCES:.c=.o)
