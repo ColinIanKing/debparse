@@ -6,7 +6,7 @@ libarchive-dev make gcc ld
 
 Howto build:
 
-make 
+make
 
 or gcc pedantic checks:
 
