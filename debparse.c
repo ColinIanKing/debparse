@@ -172,7 +172,7 @@ static la_ssize_t tar_read(
 static int debparse_untar(
 	const int fd,			/* deb file fd */
 	const off_t file_size,		/* size of tar file in deb file */
-	tar_callback_func_t func)	/* per tar entry calback func */
+	tar_callback_func_t func)	/* per tar entry callback func */
 {
 	struct archive *ar;
 	struct archive_entry *entry;
@@ -480,7 +480,7 @@ static int debparse_data_section(const int fd, const char *filename)
  *	as follows:
  *
  *	Package: The data portion is a 4 byte debian
- *	version field, currentl "2.0\n"
+ *	version field, currently "2.0\n"
  *
  *	Control: The data portion is a compressed tar
  *	file containing the debian control files
