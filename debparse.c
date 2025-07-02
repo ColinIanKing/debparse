@@ -247,20 +247,20 @@ static int debparse_section(
 	size_t ret;
 	uint64_t timestamp, file_size_u64;
 
-	ret = read(fd, section, sizeof *section);
-	if (ret != sizeof *section) {
+	ret = read(fd, section, sizeof(*section));
+	if (ret != sizeof(*section)) {
 		pr_error("error: file '%s' read failure, got only %zd bytes "
 			"of  %zd bytes of deb file %s section data\n",
-			filename, ret, sizeof *section, section_name);
+			filename, ret, sizeof(*section), section_name);
 		return -1;
 	}
 
-	if (debparse_u64(section->timestamp, sizeof section->timestamp, &timestamp) != 1) {
+	if (debparse_u64(section->timestamp, sizeof(section->timestamp), &timestamp) != 1) {
 		pr_error("error: file '%s' %s section invalid numeric timestamp\n",
 			filename, section_name);
 		return -1;
 	}
-	if (debparse_u64(section->file_size, sizeof section->file_size, &file_size_u64) != 1) {
+	if (debparse_u64(section->file_size, sizeof(section->file_size), &file_size_u64) != 1) {
 		pr_error("error: file '%s' %s section invalid numeric file size\n",
 			filename, section_name);
 		return -1;
@@ -292,7 +292,7 @@ static int debparse_package_section(const int fd, const char *filename)
 		return -1;
 	}
 	/* Sanity check debian pacake file id */
-	if (memcmp(package.file_id, "debian-binary   ", sizeof package.file_id)) {
+	if (memcmp(package.file_id, "debian-binary   ", sizeof(package.file_id))) {
 		pr_error("error: file '%s', package section file id mismatch\n",
 			filename);
 		return -1;
@@ -302,10 +302,10 @@ static int debparse_package_section(const int fd, const char *filename)
 	if (ret != DEB_PACKAGE_VERSION_SIZE) {
 		pr_error("error: file '%s' read failure, got only %zd bytes "
 			"of  %zd bytes of deb file package section version\n",
-			filename, ret, sizeof version);
+			filename, ret, sizeof(version));
 		return -1;
 	}
-	if (memcmp(version, "2.0\n", sizeof version)) {
+	if (memcmp(version, "2.0\n", sizeof(version))) {
 		pr_error("error: file '%s' unsupported file version, expected 2.0\n",
 			filename);
 		return -1;
@@ -506,16 +506,16 @@ static int debparse(const char *filename)
 	}
 
 	/* Read the Debian signature */
-	ret = read(fd, &sig, sizeof sig);
-	if (ret != sizeof sig) {
+	ret = read(fd, &sig, sizeof(sig));
+	if (ret != sizeof(sig)) {
 		pr_error("error: file '%s' read failure, got only %zd bytes "
 			"of  %zd bytes of deb package signature\n",
-			filename, ret, sizeof sig);
+			filename, ret, sizeof(sig));
 		(void)close(fd);
 		return -1;
 	}
 	/* Check if signature is valid */
-	if (memcmp(sig.signature, "!<arch>\n", sizeof sig.signature)) {
+	if (memcmp(sig.signature, "!<arch>\n", sizeof(sig.signature))) {
 		pr_error("error: file '%s' debian signature mismatch\n",
 			filename);
 		(void)close(fd);
