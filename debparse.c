@@ -65,7 +65,7 @@ typedef struct {
  *  Debian archive file information;
  */
 typedef struct {
-	char file_id[DEB_HDR_FILE_ID_SIZE];	   /* file identifier */
+	char file_id[DEB_HDR_FILE_ID_SIZE];     /* file identifier */
 	char timestamp[DEB_HDR_TIMESTAMP_SIZE]; /* file timestamp */
 	char owner_id[DEB_HDR_OWNER_ID_SIZE];   /* file owner ID */
 	char group_id[DEB_HDR_GROUP_ID_SIZE];   /* file group ID */
